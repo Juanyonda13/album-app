@@ -1,0 +1,44 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="albumForm" class="p-4 space-y-4 text-white bg-[#1b1b1b] rounded-xl text-sm h-[90vh]     overflow-y-auto 
+scrollbar-thin 
+scrollbar-thumb-gray-700 
+scrollbar-track-transparent ">
+        <div>
+            <label for="name" class="block">Nombre</label>
+            <input id="name" type="text" formControlName="name" class=" p-2 w-full text-white rounded-full bg-[#282828] mt-3">
+            </div>
+
+            <div>
+            <label for="cover" class="block">Cubierta (URL)</label>
+            <input id="cover" type="text" formControlName="cover" class="bg-[#282828] p-2 w-full text-white rounded-full mt-3">
+            </div>
+            <div>
+            <label for="releaseDate" class="block">Fecha de Lanzamiento</label>
+            <input id="releaseDate" type="date" formControlName="releaseDate" class="bg-[#282828] p-2 w-full text-white rounded-full mt-3">
+            </div>
+
+            <div>
+            <label for="description" class="block">Descripción</label>
+            <textarea id="description" formControlName="description" class="bg-[#282828] p-2 w-full text-white rounded-full mt-3" ></textarea>
+            </div>
+
+            <div>
+            <label for="genre" class="block">Género</label>
+            <select id="genre" formControlName="genre" class="bg-[#282828] p-2 w-full text-white rounded-full mt-3">
+                <option value="Classical">Classical</option>
+                <option value="Salsa">Salsa</option>
+                <option value="Rock">Rock</option>
+                <option value="Folk">Folk</option>
+            </select>
+            </div>
+
+        <div>
+        <label for="recordLabel" class="block">Disquera</label>
+        <select id="recordLabel" formControlName="recordLabel" class="bg-[#282828] p-2 w-full text-white rounded-full mt-3">
+            <option value="Sony Music">Sony Music</option>
+            <option value="Discos Fuentes">Discos Fuentes</option>
+            <option value="Elektra">Elektra</option>
+            <option value="Fania Records">Fania Records</option>
+        </select>
+        </div>
+    <button type="submit" class="bg-green-500 text-white p-2 rounded-full mt-4 w-full">Crear Álbum</button>
+</form>

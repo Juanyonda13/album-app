@@ -1,0 +1,40 @@
+<div *ngIf="album" class="  space-y-4 text-white p-5">
+    <!-- Botón de regreso -->
+    <div class="flex justify-start items-center gap-3">
+        <button
+        class=" bg-green-500 text-black w-10 h-10 flex items-center justify-center rounded-full shadow-md"
+        [routerLink]="['/albums']"
+    >
+            <span-lucide [img]="chevronIcon" class="my-icon"></span-lucide>
+        </button>
+        <p class="text-sm text-green-500">Albums / {{album?.name}}</p>
+    </div>
+
+
+    <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-6">
+        <img
+            [src]="album?.cover"
+            alt="{{ album?.name }}"
+            class="w-48 h-48 md:w-60 md:h-60 object-cover rounded-lg shadow-md"
+        />
+    
+        <div class="flex-1">
+            <h1 class="text-4xl font-bold">{{ album?.name }}</h1>
+            <p class="text-lg text-gray-300 mt-2">
+                <strong>Fecha de Lanzamiento:</strong> {{ album?.releaseDate | date }}
+            </p>
+            <p class="text-lg text-gray-300 mt-1">
+                <strong>Género:</strong> {{ album?.genre }}
+            </p>
+            <p class="text-lg text-gray-300 mt-1">
+                <strong>Disquera:</strong> {{ album?.recordLabel }}
+            </p>
+            <p class="text-gray-300 mt-4">{{ album?.description }}</p>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h3 class="text-lg font-bold">Comentarios</h3>
+        <app-album-comments [albumId]="album.id"></app-album-comments>
+    </div>
+</div>

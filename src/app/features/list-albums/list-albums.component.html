@@ -1,0 +1,65 @@
+<div>
+  <div class="flex items-center bg-[#000000] text-gray-400 rounded-full px-4 py-2 shadow-md w-full max-w-lg m-auto mt-3 h-[5vh]">
+    <!-- Icono de búsqueda -->
+    <span-lucide [img]="SearchIcon" class="w-5 h-5"></span-lucide>
+  
+    <!-- Input de búsqueda -->
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterAlbums()"
+      placeholder="What do you want to play?"
+      class="bg-transparent text-white placeholder-gray-500 focus:outline-none px-3 flex-grow"
+    />
+
+  </div>
+  <div class="grid grid-cols-1 
+    sm:grid-cols-2 md:grid-cols-3 
+    xl:grid-cols-4 gap-6 
+    p-5"
+  >
+    <div
+      *ngFor="let album of filteredAlbums"
+      class="relative bg-[#282828] rounded-lg shadow-lg overflow-hidden group"
+    >
+      <div class="relative">
+        <img
+          [src]="album.cover"
+          alt="{{ album.name }}"
+          class="w-full h-48 object-cover"
+        />
+
+        <div
+          class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+          <h2 class="text-white text-xl font-bold text-center">
+            {{ album.name }}
+          </h2>
+        </div>
+
+        <a
+          [routerLink]="['/albums', album.id]"
+          class="absolute bottom-2 right-2 bg-green-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-400 shadow-md"
+        >
+          <span-lucide [img]="PlayIcon" class="my-icon"></span-lucide>
+        </a>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-sm font-semibold text-white truncate">
+          {{ album.name }}
+        </h3>
+        <p class="text-[13px] text-[#807f7f] text-wrap">
+          {{ album.description | slice: 0:30 }}...
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal
+  [isVisible]="isDetailModalVisible"
+  (closeModal)="closeDetailModal()"
+>
+  <app-album-detail [albumId]="selectedAlbumId"></app-album-detail>
+</app-modal>

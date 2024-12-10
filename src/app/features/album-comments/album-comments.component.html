@@ -1,0 +1,43 @@
+<div class="p-4 space-y-4">
+    <!-- Formulario para agregar comentarios -->
+    <form (ngSubmit)="addComment()" [formGroup]="commentForm" class="space-y-4">
+      <div>
+        <label for="description" class="block">Comentario:</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          class="border p-2 w-full bg-[#282828] rounded-xl"
+          rows="4"
+        ></textarea>
+      </div>
+      <div>
+        <label for="rating" class="block">Calificación:</label>
+        <input
+          id="rating"
+          type="number"
+          formControlName="rating"
+          class="bg-[#282828] p-2 w-full rounded-full"
+          min="1"
+          max="5"
+        />
+      </div>
+      <button type="submit" class="bg-green-500 text-white p-2 rounded-full">
+        Agregar Comentario
+      </button>
+    </form>
+  
+    <!-- Lista de Comentarios -->
+    <div *ngIf="comments.length > 0" class="space-y-4">
+      <h3 class="text-lg font-bold">Comentarios:</h3>
+      <div
+        *ngFor="let comment of comments"
+        class="border p-4 rounded shadow-sm"
+      >
+        <p><strong>Comentario:</strong> {{ comment.description }}</p>
+        <p><strong>Calificación:</strong> {{ comment.rating }}</p>
+      </div>
+    </div>
+    <div *ngIf="comments.length === 0">
+      <p>No hay comentarios aún.</p>
+    </div>
+  </div>
